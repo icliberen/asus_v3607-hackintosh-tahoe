@@ -1,0 +1,8 @@
+.DS_Store
+__pycache__/
+*.pyc
+vendor/
+dist/
+build/
+local-identity.plist
+*.log

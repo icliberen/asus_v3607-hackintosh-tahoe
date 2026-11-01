@@ -1,0 +1,37 @@
+{
+  "observed_at": "2026-11-01T12:15:37.937064+03:00",
+  "macos": "26.7.2",
+  "build": "25G332",
+  "darwin": "25.6.0",
+  "cpu": "Intel Core 5 210H",
+  "display": {
+    "width": 1920,
+    "height": 1200,
+    "reported_hz": 143.0,
+    "nominal_hz": 144
+  },
+  "metal": {
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU (NVMTL over NVK AD107-A)",
+    "compute_test": "PASS",
+    "verified_results": 256
+  },
+  "panel_transfer": {
+    "sample_interval_seconds": 2,
+    "frames_before": 74988,
+    "frames_after": 74993,
+    "copy_errors": 0,
+    "agdc": 1,
+    "iop": 1
+  },
+  "sleep_disabled": true,
+  "audio_devices": [
+    "Built-in Microphone",
+    "Built-in Output"
+  ],
+  "identity_fields_removed": [
+    "SystemSerialNumber",
+    "MLB",
+    "SystemUUID",
+    "ROM"
+  ]
+}
