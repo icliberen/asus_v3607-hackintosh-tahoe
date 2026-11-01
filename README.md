@@ -10,7 +10,7 @@
 
 This is the configuration running on my laptop as of **November 1, 2026**. The NVIDIA GPU renders the desktop; a customized **NMIntelFB** bridge presents its frames through the Intel display engine. The internal panel keeps its firmware-established native timing. This configuration works on the laptop's own screen without an external monitor or a dGPU-only panel connection.
 
-The owner reports everything working in everyday use except sleep. The tables below separate that report from independently recorded checks and features that still need physical testing. The graphics drivers remain experimental; application compatibility and long-term stability have not been comprehensively qualified.
+Everything I use day to day works except sleep. The tables below list working features and the checks I still need to complete. The graphics drivers remain experimental; I have not comprehensively tested application compatibility or long-term stability.
 
 > **Read before installing:** the repository contains a sanitized EFI configuration, custom ACPI/USB files, the working NMIntelFB build and source, and graphics service scripts. Standard OpenCore and kext dependencies must be supplied from upstream. This is not a complete bootable EFI or macOS installer. Generate your own SMBIOS identity and follow the [installation guide](Docs/INSTALLATION.md). Copying the EFI alone does not install the macOS-side Metal stack.
 
@@ -34,7 +34,7 @@ The owner reports everything working in everyday use except sleep. The tables be
 | NVIDIA stack | **NullMoth 2.6.5**, Tahoe NVAccel variant |
 | Panel bridge | **NMIntelFB 0.1**, NullMoth **v2.5.4** base + nmx-intel patches **0001–0021**, NVIDIA **615.78.08** KAPI headers |
 
-These are observed identifiers. In particular, this laptop's Intel GPU is **A7AB**; an earlier compatibility discussion inferred a different ID from the CPU model.
+I verified these hardware identifiers on my laptop. The Intel GPU is **A7AB**; use this actual PCI ID when comparing configurations rather than inferring it from the CPU model.
 
 ## What works
 
@@ -42,24 +42,24 @@ These are observed identifiers. In particular, this laptop's Intel GPU is **A7AB
 |---|---|
 | Internal screen | Working at native 1920 × 1200 through the NVIDIA → Intel bridge |
 | Metal | RTX 4050 is a Metal 3 device; real MSL compilation and GPU compute dispatch passed, with **256 correct results** |
-| Accelerated desktop | Smooth desktop reported by the owner; transferred-frame counters increase with **zero copy errors** in recorded checks |
+| Accelerated desktop | Working smoothly; transferred-frame counters increase with **zero copy errors** in recorded checks |
 | High refresh rate | Nominal **144 Hz**; direct frame-counter measurement **143.692 Hz**. Current macOS mode reports **143 Hz**; an earlier boot reported 144 Hz |
-| Wi-Fi | BE200 connection confirmed by the owner; **AirportBZ Tahoe** driver loaded |
-| Bluetooth | Reported working in the original setup; support remains configured. Controller was **off** during publication-time inspection, so pairing was not retested |
-| Touchpad | Working through VoodooI2C / VoodooGPIO / VoodooI2CHID; bottom-right secondary click confirmed by the owner |
+| Wi-Fi | Working, confirmed; BE200 connects with the **AirportBZ Tahoe** driver |
+| Bluetooth | Working in my original setup; support remains configured. The controller was **off** during my latest checks, so I did not retest pairing |
+| Touchpad | Working through VoodooI2C / VoodooGPIO / VoodooI2CHID; bottom-right secondary click confirmed |
 | Independent scroll direction | Scroll Reverser configured for the touchpad only; external mouse direction preserved |
-| Built-in audio | Owner reports working; current CoreAudio exposes internal speakers and microphone; AppleALC + SimpleHDA loaded |
+| Built-in audio | Working; CoreAudio exposes internal speakers and microphone; AppleALC + SimpleHDA loaded |
 | Battery reporting | Percentage and AC state present; SMCBatteryManager + ECEnabler loaded |
 | Keyboard / backlight | Keyboard working and backlight illumination confirmed. Original Fn+F4 control did not respond during testing; complete hotkey coverage is unverified |
 | Shutdown / restart | Restart works; a complete shutdown was confirmed after the BIOS-specific S5 fix |
-| USB-C | Working, confirmed by the owner; individual transfer rates and alternate-mode capabilities were not separately measured |
+| USB-C | Working, confirmed; individual transfer rates and alternate-mode capabilities were not separately measured |
 | HDMI output | Not tested yet |
 | Storage | NVMe detected, SMART verified, TRIM enabled |
 
 ## Known limitations
 
 - **Sleep/wake is unsupported and system sleep is disabled.** The Intel display engine is not reliably restored after sleep. Hibernation has not been established as a working substitute; related nmx-intel experiments also failed to restore the panel.
-- **HDMI output has not been tested.** USB-C is confirmed working by the owner; specific transfer rates, USB-C video output and multi-monitor operation have not been separately characterized.
+- **HDMI output has not been tested.** USB-C is working; specific transfer rates, USB-C video output and multi-monitor operation have not been separately characterized.
 - **BE200 does not mean full Wi-Fi 7 support.** AirportBZ excludes WPA3-only / mandatory-PMF networks, 6 GHz, MLO and AWDL/AirDrop. WPA2 on 2.4/5 GHz is the documented baseline.
 - **Booting takes longer than a conventional supported graphics setup.** The bridge retains a 45-second handoff delay. Total boot time can exceed it; removing a separate fixed 15-second pause did not establish a measured overall speedup.
 - The **RTX stays active** for desktop rendering. Battery runtime, thermals, hardware video decoding, DRM, CUDA and broad professional-app compatibility have not been benchmarked or certified here.
@@ -155,7 +155,7 @@ Docs/                    Installation, configuration, recovery and evidence
 Licenses/                Third-party license notices
 ```
 
-The sanitized configuration comes from the latest local EFI recovery snapshot on November 1. Live checks on the same day confirmed the running graphics, audio and battery stack. Private backups, chat transcripts, Wi-Fi names, device serials and account data are excluded. Standard upstream binaries, NVIDIA userspace/firmware and the SimpleHDA/AppleHDA payload are obtained from their authors.
+I based the shared configuration on my latest EFI recovery snapshot from November 1 and verified the running graphics, audio and battery stack that day. I removed personal SMBIOS identifiers and excluded private backups, Wi-Fi names and account data. Standard upstream binaries, NVIDIA userspace/firmware and the SimpleHDA/AppleHDA payload are obtained from their authors.
 
 1. Follow [installation](Docs/INSTALLATION.md), obtain the [dependencies](Manifests/efi-dependencies.json), and assemble a local EFI with your own identity.
 2. Validate it with **OpenCore 1.0.8 `ocvalidate`** and test from a recovery-capable USB.
@@ -165,7 +165,7 @@ The sanitized configuration comes from the latest local EFI recovery snapshot on
 
 ## Credits and licensing
 
-The NVIDIA/Metal stack is by **[NullMoth](https://github.com/nullmoth/nvidia-macos-driver)**. The Intel-panel bridge patches are by **[kitsuneislife/nmx-intel](https://github.com/kitsuneislife/nmx-intel)**. This repository documents their adaptation to one ASUS machine and the local configuration fixes.
+The NVIDIA/Metal stack is by **[NullMoth](https://github.com/nullmoth/nvidia-macos-driver)**. The Intel-panel bridge patches are by **[kitsuneislife/nmx-intel](https://github.com/kitsuneislife/nmx-intel)**. This repository documents my ASUS configuration and model-specific fixes.
 
 Thanks to [Acidanthera](https://github.com/acidanthera), [VoodooI2C](https://github.com/VoodooI2C/VoodooI2C), [AsusSMC](https://github.com/hieplpvip/AsusSMC), [AirportBZ](https://github.com/HuajiFruit/AirportBZ), [OpenIntelWireless](https://github.com/OpenIntelWireless), [SimpleHDA](https://github.com/laobamac/SimpleHDA), [ECEnabler](https://github.com/1Revenger1/ECEnabler), [Dortania](https://dortania.github.io/OpenCore-Install-Guide/) and [Scroll Reverser](https://pilotmoon.com/scrollreverser/).
 
