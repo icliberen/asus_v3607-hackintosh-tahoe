@@ -52,12 +52,14 @@ These are observed identifiers. In particular, this laptop's Intel GPU is **A7AB
 | Battery reporting | Percentage and AC state present; SMCBatteryManager + ECEnabler loaded |
 | Keyboard / backlight | Keyboard working and backlight illumination confirmed. Original Fn+F4 control did not respond during testing; complete hotkey coverage is unverified |
 | Shutdown / restart | Restart works; a complete shutdown was confirmed after the BIOS-specific S5 fix |
+| USB-C | Working, confirmed by the owner; individual transfer rates and alternate-mode capabilities were not separately measured |
+| HDMI output | Not tested yet |
 | Storage | NVMe detected, SMART verified, TRIM enabled |
 
 ## Known limitations
 
 - **Sleep/wake is unsupported and system sleep is disabled.** The Intel display engine is not reliably restored after sleep. Hibernation has not been established as a working substitute; related nmx-intel experiments also failed to restore the panel.
-- **USB-C and external displays need physical validation.** Earlier sessions had no device available to test data, connector orientation, video routing or multi-monitor operation.
+- **HDMI output has not been tested.** USB-C is confirmed working by the owner; specific transfer rates, USB-C video output and multi-monitor operation have not been separately characterized.
 - **BE200 does not mean full Wi-Fi 7 support.** AirportBZ excludes WPA3-only / mandatory-PMF networks, 6 GHz, MLO and AWDL/AirDrop. WPA2 on 2.4/5 GHz is the documented baseline.
 - **Booting takes longer than a conventional supported graphics setup.** The bridge retains a 45-second handoff delay. Total boot time can exceed it; removing a separate fixed 15-second pause did not establish a measured overall speedup.
 - The **RTX stays active** for desktop rendering. Battery runtime, thermals, hardware video decoding, DRM, CUDA and broad professional-app compatibility have not been benchmarked or certified here.

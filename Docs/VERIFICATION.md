@@ -35,7 +35,7 @@ A prior macOS session reported 144 Hz, while the present session reports 143 Hz.
 
 The repair history includes confirmation of working Wi-Fi, touchpad, keyboard illumination, battery reporting, a smooth Metal desktop and complete shutdown after the S5 correction. The current request reports all everyday functions working except sleep. Internal audio devices were independently observed in the present runtime. Bluetooth was reported working originally but was off when inspected today; no new pairing test was performed.
 
-USB-C, external displays, all hotkeys, DRM, video acceleration, battery endurance and long-duration professional workloads have no complete validation record here.
+The owner subsequently confirmed that **USB-C works** and that **HDMI output has not been tested**. USB-C transfer rates, alternate-mode video and multi-monitor operation were not separately characterized. All hotkeys, DRM, video acceleration, battery endurance and long-duration professional workloads have no complete validation record here.
 
 ## Publication checks
 
