@@ -1,4 +1,4 @@
-# ASUS V3607VU · macOS Tahoe
+# ASUS V3607VU · macOS Tahoe Hackintosh
 
 ![macOS](https://img.shields.io/badge/macOS-Tahoe_26.7.2-111827?style=flat-square)
 ![OpenCore](https://img.shields.io/badge/OpenCore-1.0.8-2563eb?style=flat-square)
