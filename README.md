@@ -8,7 +8,7 @@
 
 **An ASUS V3607VU Hackintosh with RTX 4050 Metal rendering on the Intel-connected internal display.**
 
-This is the configuration running on my laptop as of **November 1, 2026**. The NVIDIA GPU renders the desktop; a customized **NMIntelFB** bridge presents its frames through the Intel display engine. The internal panel keeps its firmware-established native timing. This configuration works on the laptop's own screen without an external monitor or a dGPU-only panel connection.
+This is the configuration running on my laptop (works on all Asus V3607 (Asus Vivobook 16 Series) laptops) as of **November 1, 2026**. The NVIDIA GPU renders the desktop; a customized **NMIntelFB** bridge presents its frames through the Intel display engine. The internal panel keeps its firmware-established native timing. This configuration works on the laptop's own screen without an external monitor or a dGPU-only panel connection.
 
 Everything I use day to day works except sleep. The tables below list working features and the checks I still need to complete. The graphics drivers remain experimental; I have not comprehensively tested application compatibility or long-term stability.
 
